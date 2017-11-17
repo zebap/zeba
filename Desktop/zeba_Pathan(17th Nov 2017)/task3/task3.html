@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+    <script src="task3.js"></script>
+
+</head>
+
+<body>
+
+<div ng-app="myApp" ng-controller="AppController" >
+
+  <table>
+           <tr >
+        <th>Id</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>City</th>
+        <th>Address1</th>
+        <th>Address2</th>
+        <th>PostalCode</th>
+
+    </tr>   
+     <tr  >
+        <td> <input type="text" ng-model="user.id"></td>
+     <td><input type="text" ng-model="user.name" ></td>
+<span style="font-size: 12px; color: red;">{{nameError}}</span>
+     <td><input type="number" ng-model="user.phone"  ></td>
+     <span style="font-size: 12px; color: red;">{{numberError}}</h1>
+     <span style="font-size: 12px; color: red;">{{dtails}}</span>
+    <td><input type="text" ng-model="user.city"></td>
+    <td><input type="text" ng-model="user.address1"></td>
+     <td><input type="text" ng-model="user.address2"></td>
+     <td><input type="number" ng-model="user.PostalCode"></td>
+      
+
+     
+     
+                    <button ng-click="add(user)">Add</button>
+                  
+    </tr> 
+     <td ng-show="edited === $index">{{listOfData.id}}</td>
+                <td ng-show="edited === $index"><input type="text" ng-model="editedModel.id"></td>
+                <td ng-show="edited === $index"><input type="text" ng-model="editedModel.Name"></td>
+                <td ng-show="edited === $index"><input type="number" ng-model="editedModel.Phone"></td>
+                <td ng-show="edited === $index"><input type="number" ng-model="editedModel.City"></td>
+                <td ng-show="edited === $index"><input type="number" ng-model="editedModel.Address1"></td>
+                 <td ng-show="edited === $index"><input type="number" ng-model="editedModel.Address2"></td>
+                  <td ng-show="edited === $index"><input type="number" ng-model="editedModel.PostalCode"></td>
+                  <button ng-click="finishEdit($index, editedModel)">Save</button>
+
+        </table>
+
+  <table cellspacing="5px" style="border:1px solid black;">
+  <tr >
+        <th>Id</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>City</th>
+        <th>Address1</th>
+        <th>Address2</th>
+        <th>PostalCode</th>
+
+    </tr>
+    <tr ng-repeat="orderInfo in listOfData">
+        <td ng-hide="edited === $index" >{{ orderInfo.id }}</td>
+     <td ng-hide="edited === $index">{{ orderInfo.Name }}</td>
+     <td ng-hide="edited === $index">{{ orderInfo.Phone }}</td>
+    <td ng-hide="edited === $index">{{ orderInfo.City }}</td>
+    <td ng-hide="edited === $index">{{ orderInfo.Address1 }}</td>
+     <td ng-hide="edited === $index">{{ orderInfo.Address2 }}</td>
+     <td ng-hide="edited === $index">{{ orderInfo.PostalCode }}</td>
+     <td ng-hide="edited === $index">
+     <button ng-click="edit(orderInfo.id)">Edit</button>
+     </td>
+    </tr>   
+    
+  </table>
+</div>
+
+</body>
+</html>

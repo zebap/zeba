@@ -1,0 +1,99 @@
+ 
+<html>
+
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+    <script src="app.js"></script>
+
+</head>
+
+<body>
+<div class="container" ng-app="sortApp" ng-controller="mainController">
+  
+ <!--  <div class="alert alert-info">
+    <p>Sort Type: {{ sortType }}</p>
+    <p>Sort Reverse: {{ sortReverse }}</p>
+    <p>Search Query: {{ searchFish }}</p>
+  </div> -->
+  
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search City" ng-model="searchCity">
+      </div>      
+    </div>
+  </form>
+  
+  <table class="table table-bordered table-striped">
+    
+    <thead>
+      <th>Id</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Address1</th>
+        <th>Address2</th>
+        <th>PostalCode</th>
+    </thead>
+    
+    <tbody>
+      <tr ng-repeat="orderInfo in sushi | orderBy:sortType:sortReverse | filter:searchCity">
+        <td>{{ orderInfo.id }}</td>
+     <td>{{ orderInfo.Name }}</td>
+     <td>{{ orderInfo.Phone }}</td>
+    <td>{{ orderInfo.City }}</td>
+    <td>{{ orderInfo.Address1 }}</td>
+     <td>{{ orderInfo.Address2 }}</td>
+     <td>{{ orderInfo.PostalCode }}</td>
+      </tr>
+    </tbody>
+    
+  </table>
+  
+  
+  
+</div>
+
+<script type="text/javascript">
+	angular.module('sortApp', [])
+
+.controller('mainController', function($scope) {
+  $scope.sortType     = 'City'; // set the default sort type
+  $scope.sortReverse  = false;  // set the default sort order
+  $scope.searchCity   = '';     // set the default search/filter term
+  
+  // create the list of sushi rolls 
+    $scope.sushi=[
+          {
+    id :1,
+    Name: 'John',
+    Phone: 999999999,
+    City:'Jalna',
+    Address1: 'ABC road',
+    Adddress2: 'XYZ Building',
+    PostalCode:1234
+  },{
+    id :1,
+    Name: 'John',
+    Phone: '666jj',
+    City:'Pune',
+    Address1: 'ABC road',
+    Adddress2: 'XYZ Building',
+    PostalCode:1234
+  },{
+    id :1,
+    Name: 'John',
+    Phone: 7878787878,
+    City:'Pune',
+    Address1: 'ABC road',
+    Adddress2: 'XYZ Building',
+    PostalCode:1234
+  }
+      ];
+  
+});
+
+Rerun
+</script>
+</body>
+</html>
